@@ -1,0 +1,74 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<style>
+.table table-bordered
+{
+  width: 200px;
+}
+</style>
+<!-- Latest compiled and minified CSS -->
+<link rel="stylesheet" href="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/css/bootstrap.min.css">
+
+<!-- jQuery library -->
+<script src="https://ajax.googleapis.com/ajax/libs/jquery/1.12.0/jquery.min.js"></script>
+
+<!-- Latest compiled JavaScript -->
+<script src="http://maxcdn.bootstrapcdn.com/bootstrap/3.3.6/js/bootstrap.min.js"></script>
+
+
+<div class="container"  style="width:400px; position:absolute;">
+  <h2>Panel Account</h2>
+  <div class="panel-group">
+    <div class="panel panel-danger">
+      <div class="panel-heading"><center>Create Your Account</center></div>
+      <div class="panel-body">
+
+        <form role="form" action="/users" method="POST">
+            <div class="form-group">
+                <label for="email">Your Name:</label>
+                <input type="text" class="form-control" id="email" name="name" required="required">
+            </div>
+            <div class="form-group">
+                <label for="pwd">Email:</label>
+                <input type="email" class="form-control" id="pwd" name="email" required="required">
+            </div>
+                <button type="submit" class="btn btn-default">Submit</button>
+          </form>
+      </div>
+
+    </div>
+  </div>
+</div>
+
+
+<div class="container"  width="200px">
+
+            <!--list-->
+
+            <center><h2>List Them Account</h2></center>
+            <table class="table table-bordered" style="width:400px; position:absolute; right:500px;">
+              <thead>
+                <tr>
+                  <th>Firstname</th>
+                  <th>Lastname</th>
+                </tr>
+              </thead>
+              {% if users %}
+              <tbody>
+                {%  for user in users %}
+                <tr class="info">
+                  <td>{{ user.name }}</td>
+                  <td>{{ user.email }}</td>
+                </tr>
+                {% endfor %}
+              </tbody>
+              {% else %}
+              <p>No users in database</p>
+              {% endif %}
+            {% endblock %}
+            </table>
+
+            <!--endlist-->
+</div>

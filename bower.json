@@ -1,0 +1,19 @@
+{
+  "name": "kslubl",
+  "authors": [
+    "ahmadsyafrudin <sfrmd4@gmail.com>"
+  ],
+  "description": "webpage for add ksl user",
+  "main": "",
+  "moduleType": [],
+  "license": "MIT",
+  "homepage": "",
+  "ignore": [
+    "**/.*",
+    "node_modules",
+    "bower_components",
+    "./src/vendor/",
+    "test",
+    "tests"
+  ]
+}

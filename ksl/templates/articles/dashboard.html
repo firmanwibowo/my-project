@@ -1,0 +1,132 @@
+{% extends "index.html" %}
+{% block content %}
+
+
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <title>Bootstrap Example</title>
+  <meta charset="utf-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1">
+  <!-- Include Required Prerequisites -->
+  <script type="text/javascript" src="//cdn.jsdelivr.net/jquery/1/jquery.min.js"></script>
+  <script type="text/javascript" src="//cdn.jsdelivr.net/momentjs/latest/moment.min.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap/latest/css/bootstrap.css" />
+
+  <!-- Include Date Range Picker -->
+  <script type="text/javascript" src="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.js"></script>
+  <link rel="stylesheet" type="text/css" href="//cdn.jsdelivr.net/bootstrap.daterangepicker/2/daterangepicker.css" />
+
+<!--DATE JQUERY-->
+  <script type="text/javascript">
+  $(function() {
+      $('input[name="tanggal"]').daterangepicker({
+          singleDatePicker: true,
+          showDropdowns: true
+      });
+  });
+  </script>
+  <!--END JQUERY-->
+  <script>
+  function test(){
+    alert({{ users.name }})
+
+  }
+  </script>
+
+
+  <style>
+    /* Set height of the grid so .sidenav can be 100% (adjust if needed) */
+    .row.content {height: 1500px}
+
+    /* Set gray background color and 100% height */
+    .sidenav {
+      background-color: #f1f1f1;
+      height: 100%;
+    }
+
+    /* Set black background color, white text and some padding */
+    footer {
+      background-color: #555;
+      color: white;
+      padding: 15px;
+    }
+
+    /* On small screens, set height to 'auto' for sidenav and grid */
+    @media screen and (max-width: 767px) {
+      .sidenav {
+        height: auto;
+        padding: 15px;
+      }
+      .row.content {height: auto;}
+    }
+  </style>
+
+</head>
+<body>
+<div class="container-fluid">
+  <div class="row content">
+    <div class="col-sm-3 sidenav">
+      <h4>KSL BLOG</h4>
+      <ul class="nav nav-pills nav-stacked">
+        <li class="active"><a href="#section1">Home</a></li>
+        <li><a href="/articles">View Post</a></li>
+        <li><a href="/login">Log Out</a></li>
+      </ul><br>
+      <div class="input-group">
+        <input type="text" class="form-control" placeholder="Search Blog..">
+        <span class="input-group-btn">
+          <button class="btn btn-default" type="button">
+            <span class="glyphicon glyphicon-search"></span>
+          </button>
+        </span>
+      </div>
+    </div>
+
+    <div class="col-sm-9">
+<br><br>
+      <div class="panel-group">
+        <div class="panel panel-info">
+          <div class="panel-heading"><center>Input Your Article</center></div>
+          <div class="panel-body">
+
+            <form name="fform" role="form" action="/articles" method="POST">
+              <div class="form-group">
+                  <label for="email">Tanggal:</label>
+                  <input type="text" name="tanggal" class="form-control">
+                </div>
+                <div class="form-group">
+                    <label for="email">Title:</label>
+                    <input type="text" class="form-control" id="title" name="title" required="required">
+                </div>
+                <div class="form-group">
+                    <label for="pwd">Article:</label>
+                    <input type="text" class="form-control" id="article" name="article" required="required">
+
+                </div>
+
+                {% if users %}
+                <div class="form-group">
+                    <label for="pwd">Author_id:</label>
+                    <select name="id" size="1">
+                      {%  for user in users %}
+                      <option value="{{ user.id }}">{{ user.id }}</option>
+                      
+                      {% endfor %}
+
+                    </select><br>
+                  {% endif %}
+                    <button type="submit" class="btn btn-default">Submit</button>
+              </form>
+        </div>
+      </div>
+  </div>
+</div>
+
+
+<footer class="container-fluid">
+  <p>Footer Text</p>
+</footer>
+  {% endblock %}
+</body>
+</html>
